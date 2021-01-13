@@ -1,6 +1,6 @@
 # OrigenTFG
 
-##Servidor Senegal
+## Servidor Senegal
 
 Primer començarem explicant el que hem implementat al servidor del Senegal. El que volíem en aquest servidor era sobretot que es mantingués la connexió oberta i en cas que s'hagués d'apagar el servidor, que es re-connectes automàticament.
 
@@ -75,7 +75,7 @@ ClientAliveCountMax 60
 
 Després d'això el servidor de Senegal ja estaria configurat i apunt per connectar-se.
 
-##Client de Barcelona
+## Client de Barcelona
 Pel client de Barcelona s'ha optat per crear un script que permeti, només d'executar-lo, es connecti amb el servidor de Senegal, per així evitar haver d'entrar primer al servidor de l'Aucoop, i després executar una altre comanda per connectar-se a Senegal. Aquest script no s'executarà automàticament al boot, sinó que l'usuari serà el responsable d'executar-lo quan ell vulgui.
 
 S'ha optat per fer-ho així, perquè no ens interessa que sempre estigui connectat, i a part d'això, normalment es vol una shell quan es connecta per SSH, i si s'hagués de fer automàticament, el més lògic seria muntar el sistema de fitxers del Senegal amb el del propi ordinador. L'script que s'ha implementat és el següent:
