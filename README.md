@@ -6,3 +6,6 @@
 
 - hola
 - hola
+
+```bash
+sudo apt install
