@@ -18,7 +18,7 @@ User=servidorSenegal
 Environment="AUTOSSH_GATETIME=0"
 ExecStart=/usr/bin/autossh -i /home/servidorSenegal/.ssh/id_rsa -o
 UserKnownHostsFile=/dev/null -N -R 6666:localhost:22 
-servidorAucoop@192.168.20.5
+aucoop@147.83.200.187
 
 [Install]
 WantedBy=multi-user.target
@@ -83,7 +83,7 @@ S'ha optat per fer-ho així, perquè no ens interessa que sempre estigui connect
 ```bash
 #!/bin/bash
 
-ssh -tt -p 22 servidorAucoop@192.168.10.5 'ssh -o ExitOnForwardFailure=yes -o ServerAliveInterval=60 -o ServerAliveCountMax=60 -p 6666 servidorSenegal@127.0.0.1'
+ssh -tt -p 22 aucoop@147.83.200.187 'ssh -o ExitOnForwardFailure=yes -o ServerAliveInterval=60 -o ServerAliveCountMax=60 -p 6666 diadem@127.0.0.1'
 ```
 
 La comanda anterior ens servirà primer per connectar-nos al servidor de l'Aucoop, i automàticament, connectar-se al servidor de Senegal a través del localhost.
