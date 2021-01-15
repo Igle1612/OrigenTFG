@@ -19,15 +19,13 @@ Un cop s'ha tret del grup de sudoers, si ens interessa restringir alguna altre c
 - Primer de tot es pot canviar el bash de l'usuari, perquè en contes de ser /bin/bash, sigui /bin/rbash. Això provocarà que en contes de tenir un bash normal i corrent, tinguin un \textit{restricted bash}. Aquest bash el que no permet és que l'usuari canvii de directoris, i per tant, no podrà accedir a la informació dels altres usuaris del sistema.
 
 - La segona manera que hi ha per restringir el que faci l'usuari és crear diferents alies, que substitueixin els alies que hi ha creats pel sistema. Per fer això s'ha d'accedir a /home/USERNAME i crear un fitxer anomenat bash\_profile, i en aquest document s'han d'afegir nous alies. Seguidament hi ha un exemple del fitxer:
-
     ```bash
     alias apt-get="print ''"
     alias su="print ''"
     [...]
     alias alias="printf ''"
     ```
-
-    Com es pot veure, el que es fa aquí és bàsicament canviar els alias del sistema, que quan es vulguin executar, traurà un printf. És molt important, al posar la línia final,    ja que sinó no es poden fer alies de totes aquestes comandes. En aquesta opció es posen totes les comandes que no es volen que es puguin executar.
+Com es pot veure, el que es fa aquí és bàsicament canviar els alias del sistema, que quan es vulguin executar, traurà un printf. És molt important, al posar la línia final,    ja que sinó no es poden fer alies de totes aquestes comandes. En aquesta opció es posen totes les comandes que no es volen que es puguin executar.
 
 - Per últim, hi ha l'opció contraria a la que s'ha mencionat en el número dos. Bàsicament es tracta de no permetre cap comanda, excepte les que es vulguin permetre, que són les que s'han de citar explícitament. Aquests són els passos que s'han de seguir:
 
@@ -151,6 +149,42 @@ Un cop connectat s'executarà la comanda que tenim entre les cometes "**''**". E
 Un cop creat l'script, s'ha de configurar el propi SSH. Aquest cop només és necessari configurar l'SSH del client, ja que ningú s'ha de connectar a aquest ordinador. La configuració es fa exactament igual que abans, es crea un fitxer a ~/.ssh/ anomenat **config**, i és aquesta:
 
 ```bash
+Host *
+      ServerAliveInterval 60
+      ServerAliveCountMax 60
+      ExitOnForwardFailure yes
+```
+
+## Servidor de l'Aucoop
+
+El servidor de l'Auccop actuarà com a client i com a servidor tot i que en principi en cap moment s'executarà cap comanda.
+
+S'ha de tenir en conta, que en aquest servidor tindrem dos usuaris, un usuari que serà el normal, i un altre al qual no se li permetrà accedir com a root, per evitar que des de Senegal, es pugui accedir, i modificar fitxers importants que no es vol que es modifiquin. Per tant, separarem amb quin usuari hem de configurar cada cosa:
+
+### Usuari root:
+Amb aquest usuari s'haurà de configurar el servidor. Utilitzarem aquest usuari, perquè en principi és l'únic que té la capacitat de modificar el fitxer sshd\_config.
+
+Per modificar aquest fitxer hem de modificar exactament el mateix que abans, i no tocar ni modificar res més del que ja hi trobem escrit, per evitar problemes en les configuracions, per tant l'únic que hem d'afegir ha de ser:
+
+```bash
+ClientAliveInterval 60
+ClientAliveCountMax 60
+```
+
+Si es vol assegurar que cap usuari que es connecti per ssh pugui entrar en root, podem descomentar la línia de PermitRootLogin i posar-la a "no", per tant les línies que s'haurien de descomentar serien:
+
+```bash
+ClientAliveInterval 60
+ClientAliveCountMax 60
+PermitRootLogin no
+```
+
+### Usuari ssh:
+
+Aquest usuari haurà de crear la configuració com a client, ja que utilitzarem aquest usuari com a intermediari.
+
+Per configurar-lo s'ha de fer com s'ha fet els anteriors cops. S'ha de crear un fitxer anomenat **config**. En aquest fitxer ens hem d'assegurar que tinguem també la possibilitat de no rebre resposta del servidor durant una hora, i tot i així seguir connectats, i en cas de fallada, el port s'hauria de tancar automàticament, per tant el fitxer hauria de tenir:
+ ```bash
 Host *
       ServerAliveInterval 60
       ServerAliveCountMax 60
