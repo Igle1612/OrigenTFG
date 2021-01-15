@@ -1,5 +1,59 @@
 # OrigenTFG
 
+## Creació usuari de seguretat al servidor de l'Aucoop
+
+Per crear un nou usuari s'ha d'executar la següent comanda:
+
+```bash
+sudo adduser USERNAME
+```
+
+Un cop creat l'usuari, s'ha de comprovar que no estigui al grup de sudo, per tant s'ha d'executar:
+
+```bash
+sudo deluser USERNAME sudo
+```
+
+Un cop s'ha tret del grup de sudoers, si ens interessa restringir alguna altre comanda, hi ha diverses opcions:
+
+- Primer de tot es pot canviar el bash de l'usuari, perquè en contes de ser /bin/bash, sigui /bin/rbash. Això provocarà que en contes de tenir un bash normal i corrent, tinguin un \textit{restricted bash}. Aquest bash el que no permet és que l'usuari canvii de directoris, i per tant, no podrà accedir a la informació dels altres usuaris del sistema.
+
+- La segona manera que hi ha per restringir el que faci l'usuari és crear diferents alies, que substitueixin els alies que hi ha creats pel sistema. Per fer això s'ha d'accedir a /home/USERNAME i crear un fitxer anomenat bash\_profile, i en aquest document s'han d'afegir nous alies. Seguidament hi ha un exemple del fitxer:
+
+    ```bash
+    alias apt-get="print ''"
+    alias su="print ''"
+    [...]
+    alias alias="printf ''"
+    ```
+
+    Com es pot veure, el que es fa aquí és bàsicament canviar els alias del sistema, que quan es vulguin executar, traurà un printf. És molt important, al posar la línia final,    ja que sinó no es poden fer alies de totes aquestes comandes. En aquesta opció es posen totes les comandes que no es volen que es puguin executar.
+
+- Per últim, hi ha l'opció contraria a la que s'ha mencionat en el número dos. Bàsicament es tracta de no permetre cap comanda, excepte les que es vulguin permetre, que són les que s'han de citar explícitament. Aquests són els passos que s'han de seguir:
+
+        1. Canviar la shell de l'usuari per una restricted bash. Això servirà per evitar que es pugui accedir a altres directoris. Per fer això es pot executar la següent comanda:
+        ```bash 
+        chsh -s /bin/rbash <username>
+        ```
+        2. Crear un directori \textit{bin} dintre el mateix usuari. es poden utilitzar les següents comandes:
+        ```bash 
+        sudo mkdir /home/<username>/bin
+        sudo chmod 755 /home/<username>/bin
+        ```
+        3. Seguidament s'ha de canviar el path per defecte de l'usuari al directori bin.
+        ```bash 
+        echo "PATH=$HOME/bin" >> /home/<username>/.bashrc
+        echo "export PATH >> /home/<username>/.bashrc
+        ```
+        4. El següent pas és crear un link de les comandes que l'usuari necessita. D'aquesta manera es pot assegurar que només pugui executar les comandes que es decideixin. Es pot fer això executant la següent comanda:
+        ```bash 
+        sudo ln -s /bin/COMMAND /home/<username>/bin/
+        ```
+        5. Per últim, s'ha de restringir l'usuari de modificar el .bashrc, per evitar que es pugui desfer tot el que s'ha fet. Una comanda per executar això és:
+        ```bash 
+        chattr +i /home/<username>/.bashrc
+        ```
+
 ## Servidor Senegal
 
 Primer començarem explicant el que hem implementat al servidor del Senegal. El que volíem en aquest servidor era sobretot que es mantingués la connexió oberta i en cas que s'hagués d'apagar el servidor, que es re-connectes automàticament.
