@@ -27,30 +27,30 @@ Un cop s'ha tret del grup de sudoers, si ens interessa restringir alguna altre c
     ```
 Com es pot veure, el que es fa aquí és bàsicament canviar els alias del sistema, que quan es vulguin executar, traurà un printf. És molt important, al posar la línia final,    ja que sinó no es poden fer alies de totes aquestes comandes. En aquesta opció es posen totes les comandes que no es volen que es puguin executar.
 
-- Per últim, hi ha l'opció contraria a la que s'ha mencionat en el número dos. Bàsicament es tracta de no permetre cap comanda, excepte les que es vulguin permetre, que són les que s'han de citar explícitament. Aquests són els passos que s'han de seguir:
+- Per últim, hi ha l'opció contraria a la que s'ha mencionat en el número dos. Bàsicament es tracta de no permetre cap comanda, excepte les que es vulguin permetre, que són les que s'han de citar explícitament. Aquests són els passos que s'han de seguir
 
-        1. Canviar la shell de l'usuari per una restricted bash. Això servirà per evitar que es pugui accedir a altres directoris. Per fer això es pot executar la següent comanda:
-        ```bash 
-        chsh -s /bin/rbash <username>
-        ```
-        2. Crear un directori \textit{bin} dintre el mateix usuari. es poden utilitzar les següents comandes:
-        ```bash 
-        sudo mkdir /home/<username>/bin
-        sudo chmod 755 /home/<username>/bin
-        ```
-        3. Seguidament s'ha de canviar el path per defecte de l'usuari al directori bin.
-        ```bash 
-        echo "PATH=$HOME/bin" >> /home/<username>/.bashrc
-        echo "export PATH >> /home/<username>/.bashrc
-        ```
-        4. El següent pas és crear un link de les comandes que l'usuari necessita. D'aquesta manera es pot assegurar que només pugui executar les comandes que es decideixin. Es pot fer això executant la següent comanda:
-        ```bash 
-        sudo ln -s /bin/COMMAND /home/<username>/bin/
-        ```
-        5. Per últim, s'ha de restringir l'usuari de modificar el .bashrc, per evitar que es pugui desfer tot el que s'ha fet. Una comanda per executar això és:
-        ```bash 
-        chattr +i /home/<username>/.bashrc
-        ```
+1. Canviar la shell de l'usuari per una restricted bash. Això servirà per evitar que es pugui accedir a altres directoris. Per fer això es pot executar la següent comanda:
+    ```bash 
+     chsh -s /bin/rbash <username>
+     ```
+2. Crear un directori \textit{bin} dintre el mateix usuari. es poden utilitzar les següents comandes:
+     ```bash 
+     sudo mkdir /home/<username>/bin
+     sudo chmod 755 /home/<username>/bin
+     ```
+3. Seguidament s'ha de canviar el path per defecte de l'usuari al directori bin.
+     ```bash 
+     echo "PATH=$HOME/bin" >> /home/<username>/.bashrc
+     echo "export PATH >> /home/<username>/.bashrc
+     ```
+4. El següent pas és crear un link de les comandes que l'usuari necessita. D'aquesta manera es pot assegurar que només pugui executar les comandes que es decideixin. Es pot fer això executant la següent comanda:
+     ```bash 
+     sudo ln -s /bin/COMMAND /home/<username>/bin/
+     ```
+5. Per últim, s'ha de restringir l'usuari de modificar el .bashrc, per evitar que es pugui desfer tot el que s'ha fet. Una comanda per executar això és:
+     ```bash 
+     chattr +i /home/<username>/.bashrc
+     ```
 
 ## Servidor Senegal
 
