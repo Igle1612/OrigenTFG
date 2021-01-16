@@ -1,21 +1,5 @@
 # OrigenTFG
 
-## Configuració de les claus
-
-Per tornar a configurar totes les keys, que segurament no es volen tenir per exemple a l'usuari del servidor de l'Aucoop, s'han d'esborrar primer. El que hem de fer és esborrar la clau de ~/.ssh/authorized_keys. S'ha d'esborrar la línia que ens interessi.
-
-Si es vol crear una clau nova s'ha d'executar la comanda:
-```bash
-ssh-keygen
-```
-Seguidament es demana on es vol guardar la clau creada. Es recomana deixar-ho per defecte, ja que així és més fàcil localitzar-les. Es guarden a /home/USERNAME/.ssh/id_rsa.
-
-Quan hi hagi la clau creada, s'ha d'enviar al servidor al qual ens volem connectar, perquè d'aquesta manera s'hi podrà accedir sense necessitat de contrasenya. Per enviar-la:
-```bash
-ssh-copy-id -i ~/.ssh/id_rsa.pub <username>@<ip>
-```
-Un cop executada la comanda, et demanarà que introdueixis una contrasenya. Per fer-ho tot més fàcil, s'han de deixar buides les contrasenyes, d'aquesta manera no serà necessari entrar-les manualment després.
-
 ## Creació usuari de seguretat al servidor de l'Aucoop
 
 Per crear un nou usuari s'ha d'executar la següent comanda:
@@ -67,6 +51,24 @@ Com es pot veure, el que es fa aquí és bàsicament canviar els alias del siste
      ```bash 
      chattr +i /home/<username>/.bashrc
      ```
+
+
+## Configuració de les claus
+
+Per tornar a configurar totes les keys, que segurament no es volen tenir per exemple a l'usuari del servidor de l'Aucoop, s'han d'esborrar primer. El que hem de fer és esborrar la clau de ~/.ssh/authorized_keys. S'ha d'esborrar la línia que ens interessi.
+
+Si es vol crear una clau nova s'ha d'executar la comanda:
+```bash
+ssh-keygen
+```
+Seguidament es demana on es vol guardar la clau creada. Es recomana deixar-ho per defecte, ja que així és més fàcil localitzar-les. Es guarden a /home/USERNAME/.ssh/id_rsa.
+
+Quan hi hagi la clau creada, s'ha d'enviar al servidor al qual ens volem connectar, perquè d'aquesta manera s'hi podrà accedir sense necessitat de contrasenya. Per enviar-la:
+```bash
+ssh-copy-id -i ~/.ssh/id_rsa.pub <username>@<ip>
+```
+Un cop executada la comanda, et demanarà que introdueixis una contrasenya. Per fer-ho tot més fàcil, s'han de deixar buides les contrasenyes, d'aquesta manera no serà necessari entrar-les manualment després.
+
 
 ## Servidor Senegal
 
