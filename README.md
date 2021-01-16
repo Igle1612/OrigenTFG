@@ -33,7 +33,7 @@ Com es pot veure, el que es fa aquí és bàsicament canviar els alias del siste
     ```bash 
      chsh -s /bin/rbash <username>
      ```
-2. Crear un directori \textit{bin} dintre el mateix usuari. es poden utilitzar les següents comandes:
+2. Crear un directori *bin* dintre el mateix usuari. es poden utilitzar les següents comandes:
      ```bash 
      sudo mkdir /home/<username>/bin
      sudo chmod 755 /home/<username>/bin
