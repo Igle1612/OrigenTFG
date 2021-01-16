@@ -16,7 +16,7 @@ sudo deluser USERNAME sudo
 
 Un cop s'ha tret del grup de sudoers, si ens interessa restringir alguna altre comanda, hi ha diverses opcions:
 
-- Primer de tot es pot canviar el bash de l'usuari, perquè en contes de ser /bin/bash, sigui /bin/rbash. Això provocarà que en contes de tenir un bash normal i corrent, tinguin un \textit{restricted bash}. Aquest bash el que no permet és que l'usuari canvii de directoris, i per tant, no podrà accedir a la informació dels altres usuaris del sistema.
+- Primer de tot es pot canviar el bash de l'usuari, perquè en contes de ser /bin/bash, sigui /bin/rbash. Això provocarà que en contes de tenir un bash normal i corrent, tinguin un *restricted bash*. Aquest bash el que no permet és que l'usuari canvii de directoris, i per tant, no podrà accedir a la informació dels altres usuaris del sistema.
 
 - La segona manera que hi ha per restringir el que faci l'usuari és crear diferents alies, que substitueixin els alies que hi ha creats pel sistema. Per fer això s'ha d'accedir a /home/USERNAME i crear un fitxer anomenat bash\_profile, i en aquest document s'han d'afegir nous alies. Seguidament hi ha un exemple del fitxer:
     ```bash
