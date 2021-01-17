@@ -10,6 +10,6 @@ else
 	chmod 755 /home/$1/bin
 	echo "PATH=$HOME/bin" >> /home/$1/.bashrc
 	echo "export PATH" >> /home/$1/.bashrc
-	sudo ln -s /bin/ssh /home/$1/bin/
+	ln -s /bin/ssh /home/$1/bin/
 fi
 exit 0
