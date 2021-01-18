@@ -1,3 +1,3 @@
 #!/bin/bash
 
-ssh -tt -p 22 sshuser@192.168.10.5 'autossh -o ServerAliveInterval=180 -o ServerAliveCountMax=30 -p 6666 servidorSenegal@127.0.0.1'
+ssh -tt -p 22 aucoop@147.83.200.187 'autossh -o ExitOnForwardFailure=yes -o ServerAliveInterval=60 -o ServerAliveCountMax=60 -p 6666 diadem@127.0.0.1'
