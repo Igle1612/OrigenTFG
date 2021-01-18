@@ -1,11 +1,13 @@
 [Unit]
-Description=AutoSSH tunnel service everythingcli MySQL on local port 6666
+Description=AutoSSH tunnel to start at boot at local port 6666
 After=network.target
 
 [Service]
-User=servidorSenegal
+User=diadem
 Environment="AUTOSSH_GATETIME=0"
-ExecStart=/usr/bin/autossh -i /home/servidorSenegal/.ssh/id_rsa -o UserKnownHostsFile=/dev/null -N -R 6666:localhost:22 sshuser@192.168.20.5
+ExecStart=/usr/bin/autossh -i /home/diadem/.ssh/id_rsa -o
+UserKnownHostsFile=/dev/null -N -R 6666:localhost:22 
+aucoop@147.83.200.187
 
 [Install]
 WantedBy=multi-user.target
